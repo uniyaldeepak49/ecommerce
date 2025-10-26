@@ -1,0 +1,182 @@
+<div class="home-container">
+  <!-- Spectacular Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-animation"></div>
+    <div class="hero-particles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✨ New Collection 2025</div>
+      <h1 class="hero-title">
+        <span class="gradient-text">Discover</span> Amazing Products <br />at
+        <span class="highlight">Unbeatable</span> Prices
+      </h1>
+      <p class="hero-subtitle">
+        Experience the future of shopping with our curated collection of premium products
+      </p>
+      <div class="hero-actions">
+        <button mat-raised-button class="cta-primary" routerLink="/products">
+          <mat-icon>rocket_launch</mat-icon>
+          Shop Now
+        </button>
+        <button mat-stroked-button class="cta-secondary">
+          <mat-icon>play_circle</mat-icon>
+          Watch Demo
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">50K+</span>
+          <span class="stat-label">Happy Customers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">10K+</span>
+          <span class="stat-label">Products</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">99%</span>
+          <span class="stat-label">Satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Features Section -->
+  <section class="features animate-on-scroll">
+    <div class="section-header">
+      <h2 class="section-title">Why Choose <span class="gradient-text">ShopMate</span>?</h2>
+      <p class="section-subtitle">Experience shopping like never before</p>
+    </div>
+    <div class="features-grid">
+      @for (feature of features; track feature.title) {
+        <div class="feature-card glass-card hover-lift">
+          <div class="feature-icon">
+            <mat-icon>{{ feature.icon }}</mat-icon>
+          </div>
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
+          <button mat-button class="feature-link" [routerLink]="feature.route">
+            Explore <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Shop by Category Section -->
+  <section class="shop-categories animate-on-scroll">
+    <div class="section-header">
+      <h2 class="section-title">Shop by <span class="gradient-text">Category</span></h2>
+      <p class="section-subtitle">Discover amazing products across all categories</p>
+    </div>
+    <div class="categories-container">
+      @for (category of categories; track category.name) {
+        <div class="category-item" [routerLink]="category.route">
+          <div class="category-image" [style.background-image]="'url(' + category.image + ')'">
+            <div class="category-icon-wrapper">
+              <mat-icon>{{ category.icon }}</mat-icon>
+            </div>
+            <div class="category-overlay"></div>
+          </div>
+          <div class="category-info">
+            <h3 class="category-name">{{ category.name }}</h3>
+            <p class="category-count">{{ category.count }}+ Products</p>
+            <button mat-button class="shop-now-btn">
+              Shop Now <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Premium Product Sliders -->
+  <section class="product-slider animate-on-scroll">
+    <div class="slider-header">
+      <div>
+        <h2 class="section-title">Featured <span class="gradient-text">Products</span></h2>
+        <p class="section-subtitle">Handpicked just for you</p>
+      </div>
+      <div class="slider-controls">
+        <button mat-fab color="primary" class="slider-btn" (click)="scrollSlider('featured', -1)">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-fab color="primary" class="slider-btn" (click)="scrollSlider('featured', 1)">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="slider-container" #featuredSlider data-slider="featured">
+      @for (product of featuredProducts; track product.id) {
+        <app-product-card [product]="product" class="product-slide premium-card"></app-product-card>
+      }
+    </div>
+  </section>
+
+  <!-- Best Sellers with Glow Effect -->
+  <section class="product-slider bestsellers animate-on-scroll">
+    <div class="slider-header">
+      <div>
+        <h2 class="section-title">🔥 <span class="gradient-text">Best Sellers</span></h2>
+        <p class="section-subtitle">What everyone's buying</p>
+      </div>
+      <div class="slider-controls">
+        <button mat-fab color="accent" class="slider-btn" (click)="scrollSlider('bestsellers', -1)">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-fab color="accent" class="slider-btn" (click)="scrollSlider('bestsellers', 1)">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="slider-container" #bestsellersSlider data-slider="bestsellers">
+      @for (product of bestSellers; track product.id) {
+        <app-product-card
+          [product]="product"
+          class="product-slide bestseller-card"
+        ></app-product-card>
+      }
+    </div>
+  </section>
+
+  <!-- Interactive Quick Actions -->
+  <section class="quick-actions animate-on-scroll">
+    <div class="section-header">
+      <h2 class="section-title">Quick <span class="gradient-text">Actions</span></h2>
+      <p class="section-subtitle">Everything you need at your fingertips</p>
+    </div>
+    <div class="actions-grid">
+      @for (action of quickActions; track action.title) {
+        <button
+          mat-raised-button
+          class="action-btn glass-card hover-lift"
+          [routerLink]="action.route"
+        >
+          <div class="action-icon">
+            <mat-icon>{{ action.icon }}</mat-icon>
+          </div>
+          <span>{{ action.title }}</span>
+          <mat-icon class="action-arrow">arrow_forward</mat-icon>
+        </button>
+      }
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter">
+    <div class="newsletter-content">
+      <div class="newsletter-text">
+        <h2>Stay in the <span class="gradient-text">Loop</span></h2>
+        <p>Get exclusive deals, new arrivals, and insider updates delivered to your inbox</p>
+      </div>
+      <div class="newsletter-form">
+        <mat-form-field appearance="outline" class="email-field">
+          <input matInput placeholder="Enter your email" type="email" />
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="subscribe-btn">
+          <mat-icon>notifications_active</mat-icon>
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

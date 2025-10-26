@@ -1,0 +1,25 @@
+<mat-card class="product-card">
+  <div class="product-image">
+    <img [src]="product.image" [alt]="product.name" loading="lazy" />
+    @if (product.badge) {
+      <mat-chip class="product-badge">{{ product.badge }}</mat-chip>
+    }
+    <button mat-icon-button class="wishlist-btn" (click)="toggleWishlist()">
+      <mat-icon>{{ isInWishlist ? 'favorite' : 'favorite_border' }}</mat-icon>
+    </button>
+  </div>
+  <mat-card-content>
+    <h4>{{ product.name }}</h4>
+    <p class="price">{{ product.price }}</p>
+    @if (product.rating) {
+      <div class="rating">
+        @for (star of [1, 2, 3, 4, 5]; track star) {
+          <mat-icon class="star">{{ star <= product.rating ? 'star' : 'star_border' }}</mat-icon>
+        }
+      </div>
+    }
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
+  </mat-card-actions>
+</mat-card>
